@@ -24,14 +24,14 @@ security:
                 require_previous_session: false
 
         main:
-            pattern: ^/
-            provider: fos_userbundle
             stateless: true
             anonymous: true
-            lexik_jwt: ~
 
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+    access_control:
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
