@@ -1,0 +1,5 @@
+imports:
+    - { resource: data_providers.yml }
+    - { resource: event_listeners.yml }
+    - { resource: repositories.yml }
+    - { resource: services.yml }

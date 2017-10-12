@@ -1,0 +1,14 @@
+services:
+
+  # User
+  app.event_listener.create.user:
+    class: 'AppBundle\EventListener\CreateUserListener'
+    arguments: ['@app.service.user_password_hasher']
+    tags:
+      - { name: doctrine.event_listener, event: prePersist }
+      
+  app.event_listener.sign_in_user:
+    class: 'AppBundle\EventListener\SignInUserListener'
+    arguments: ['@doctrine.orm.default_entity_manager']
+    tags:
+        - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
