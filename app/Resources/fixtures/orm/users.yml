@@ -1,0 +1,11 @@
+AppBundle\Entity\User:
+    user_1:
+        email: user@test.com
+        plainPassword: 'test'
+        status: 1
+        
+    user_{2..5}:
+        email: <email()>
+        plainPassword: 'test'
+        status: 1
+
