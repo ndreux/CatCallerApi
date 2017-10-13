@@ -1,6 +1,8 @@
 Feature: Manage users
   I need to be able to retrieve, create and update them trough the API.
 
+  @createSchema
+  @loadFixtures
   Scenario: I want to authenticate an active user with valid login/password
     When I add "Content-type" header equal to "application/x-www-form-urlencoded; charset=utf-8"
     And I send a "POST" request to "/login_check" with parameters:
@@ -12,7 +14,8 @@ Feature: Manage users
     And the header "Content-Type" should be equal to "application/json"
     And the JSON node "token" should exist
 
-
+  @dropSchema
+  @loadFixtures
   Scenario: Retrieve the user list
     Given I am authenticated as "user@test.com"
     When I add "Accept" header equal to "application/ld+json"

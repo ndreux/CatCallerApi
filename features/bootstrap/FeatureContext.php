@@ -7,12 +7,15 @@ use Behatch\Context\RestContext;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager;
+use Symfony\Component\Process\Process;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext implements Context, SnippetAcceptingContext
 {
+    const DEFAULT_TIMEOUT = 3600;
+
     /**
      * @var ManagerRegistry
      */
@@ -79,6 +82,16 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function createDatabase()
     {
         $this->schemaTool->createSchema($this->classes);
+    }
+
+    /**
+     * @BeforeScenario @loadFixtures
+     */
+    public function loadFixtures()
+    {
+        $process = new Process('php bin/console hautelook:fixture:load --no-interaction --env=test');
+        $process->setTimeout(self::DEFAULT_TIMEOUT);
+        $process->run();
     }
 
     /**
