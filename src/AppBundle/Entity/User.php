@@ -19,10 +19,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         "denormalization_context"={"groups"={"user_write"}},
  *         "filters"={"user.search"}
  *     },
- *     collectionOperations={"get"={"method"="GET"}, "post"={"method"="POST"}},
+ *     collectionOperations={
+ *          "post"={"method"="POST", "access_control"="is_anonymous()"}
+ *     },
  *     itemOperations={
- *          "get"={"method"="GET"},
- *          "put"={"method"="PUT"}
+ *          "get"={"method"="GET", "access_control"="is_granted('ROLE_USER') and object == user"},
+ *          "put"={"method"="PUT", "access_control"="is_granted('ROLE_USER') and object == user"}
  *     }
  * )
  *
