@@ -12,14 +12,19 @@ RUN set -xe \
 		$PHPIZE_DEPS \
 		icu-dev \
 		zlib-dev \
+        freetype-dev libpng-dev libjpeg-turbo-dev g++ make autoconf \
 	&& docker-php-ext-install \
 		intl \
 		pdo_mysql \
 		zip \
 	&& pecl install \
 		apcu-${APCU_VERSION} \
+		xdebug \
+		redis \
 	&& docker-php-ext-enable --ini-name 20-apcu.ini apcu \
 	&& docker-php-ext-enable --ini-name 05-opcache.ini opcache \
+	&& docker-php-ext-enable --ini-name xdebug.ini xdebug \
+	&& docker-php-ext-enable --ini-name 09-redis.ini redis \
 	&& apk del .build-deps
 
 COPY docker/app/php.ini /usr/local/etc/php/php.ini
@@ -63,6 +68,17 @@ RUN composer dump-autoload --optimize --classmap-authoritative --no-dev
 
 COPY docker/app/docker-entrypoint.sh /usr/local/bin/docker-app-entrypoint
 RUN chmod +x /usr/local/bin/docker-app-entrypoint
+
+RUN echo "xdebug.idekey = PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.default_enable = 1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable = 1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart = 1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_connect_back = 0" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.profiler_enable = 1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_log='/tmp/xdebug.log'" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_host = docker.for.mac.localhost" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN export PHP_IDE_CONFIG="serverName=ApiPlatform"
 
 ENTRYPOINT ["docker-app-entrypoint"]
 CMD ["php-fpm"]
