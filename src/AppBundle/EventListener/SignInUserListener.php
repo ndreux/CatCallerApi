@@ -1,12 +1,11 @@
 <?php
 
 namespace AppBundle\EventListener;
+
 use AppBundle\Entity\User;
-use AppBundle\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**

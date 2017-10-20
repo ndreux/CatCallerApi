@@ -7,7 +7,7 @@ security:
 
     providers:
         app_bundle:
-            id: app.data_provider.user
+            id: AppBundle\Security\User\UserProvider
 
     firewalls:
         login:

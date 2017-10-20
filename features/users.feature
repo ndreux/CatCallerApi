@@ -14,7 +14,7 @@ Feature: Manage users
     And the header "Content-Type" should be equal to "application/json"
     And the JSON node "token" should exist
 
-  Scenario: An authentiated user should not be able to retrieve the user list
+  Scenario: An authenticated user should not be able to retrieve the user list
     Given I am authenticated as "user@test.com"
     When I add "Content-Type" header equal to "application/ld+json"
     And I add "Accept" header equal to "application/ld+json"
@@ -67,6 +67,39 @@ Feature: Manage users
     And the JSON node "createdAt" should exist
     And the JSON node "updatedAt" should exist
     And the JSON node "lastConnectedAt" should be null
+
+  Scenario: An anonymous user should not be able to get a user profile
+    Given I am not authenticated
+    When I add "Content-Type" header equal to "application/ld+json"
+    And I add "Accept" header equal to "application/ld+json"
+    And I send a "GET" request to "/users/1"
+    Then the response status code should be 401
+    And the response should be in JSON
+    And the JSON should be equal to:
+    """
+    {
+        "code": 401,
+        "message": "Bad credentials"
+    }
+    """
+
+  Scenario: An authenticated user should be able to get its own profile
+    Given I am authenticated as "user@test.com"
+    When I add "Content-Type" header equal to "application/ld+json"
+    And I add "Accept" header equal to "application/ld+json"
+    And I send a "GET" request to "/users/1"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the header "Content-Type" should be equal to "application/ld+json; charset=utf-8"
+    And the JSON node "@context" should be equal to "/contexts/User"
+    And the JSON node "@id" should be equal to "/users/1"
+    And the JSON node "@type" should be equal to "User"
+    And the JSON node "id" should be equal to "1"
+    And the JSON node "email" should be equal to "user@test.com"
+    And the JSON node "status" should be equal to 1
+    And the JSON node "createdAt" should not be null
+    And the JSON node "updatedAt" should not be null
+    And the JSON node "lastConnectedAt" should not be null
 
   Scenario: An authenticated user should not be able to get the profile of an other user
     Given I am authenticated as "user@test.com"

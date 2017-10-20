@@ -1,5 +1,5 @@
 services:
 
-  app.data_provider.user:
+  AppBundle\Security\User\UserProvider:
     class: AppBundle\Security\User\UserProvider
-    arguments: ['@app.repository.user']
+    arguments: ['@AppBundle\Repository\UserRepository']
