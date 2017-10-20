@@ -1,0 +1,5 @@
+services:
+
+  AppBundle\Security\User\UserProvider:
+    class: AppBundle\Security\User\UserProvider
+    arguments: ['@AppBundle\Repository\UserRepository']

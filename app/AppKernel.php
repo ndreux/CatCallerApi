@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new AppBundle\AppBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
         ];
 
@@ -26,6 +25,9 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+            $bundles[] = new Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle();
+            $bundles[] = new Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
 
             if ('dev' === $this->getEnvironment()) {
                 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
@@ -54,6 +56,5 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
-        $loader->load($this->getRootDir().'/config/security_'.$this->getEnvironment().'.yml');
     }
 }
