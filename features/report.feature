@@ -8,51 +8,45 @@ Feature: Manage reports
     When I add "Content-Type" header equal to "application/ld+json"
     And I add "Accept" header equal to "application/ld+json"
     And I send a "GET" request to "/reports"
-    Then the response status code should be 403
+    Then the response status code should be 401
     And the response should be in JSON
     And the JSON should be equal to:
-      """
-      {
-        "@context": "/contexts/Error",
-        "@type": "hydra:Error",
-        "hydra:title": "An error occurred",
-        "hydra:description": "Access Denied."
-      }
-      """
+    """
+    {
+      "code": 401,
+      "message": "Bad credentials"
+    }
+    """
 
   Scenario: An anonymous user should not be able to create a new report
     Given I am not authenticated
     When I add "Content-Type" header equal to "application/ld+json"
     And I add "Accept" header equal to "application/ld+json"
     And I send a "POST" request to "/reports"
-    Then the response status code should be 403
+    Then the response status code should be 401
     And the response should be in JSON
     And the JSON should be equal to:
-      """
-      {
-        "@context": "/contexts/Error",
-        "@type": "hydra:Error",
-        "hydra:title": "An error occurred",
-        "hydra:description": "Access Denied."
-      }
-      """
+    """
+    {
+      "code": 401,
+      "message": "Bad credentials"
+    }
+    """
 
   Scenario: An anonymous user should not be able to update an existing report
     Given I am not authenticated
     When I add "Content-Type" header equal to "application/ld+json"
     And I add "Accept" header equal to "application/ld+json"
-    And I send a "PUT" request to "/reports"
-    Then the response status code should be 403
+    And I send a "PUT" request to "/reports/2"
+    Then the response status code should be 401
     And the response should be in JSON
     And the JSON should be equal to:
-      """
-      {
-        "@context": "/contexts/Error",
-        "@type": "hydra:Error",
-        "hydra:title": "An error occurred",
-        "hydra:description": "Access Denied."
-      }
-      """
+    """
+    {
+      "code": 401,
+      "message": "Bad credentials"
+    }
+    """
 
   Scenario: An authenticated user should able to retrieve the report list (5 results)
     Given I am authenticated as "user@test.com"
