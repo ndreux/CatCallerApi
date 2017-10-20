@@ -1,13 +1,19 @@
 services:
 
   # User
-  app.event_listener.create.user:
+  AppBundle\EventListener\CreateUserListener:
     class: 'AppBundle\EventListener\CreateUserListener'
-    arguments: ['@app.service.user_password_hasher']
+    arguments: ['@AppBundle\Service\UserPasswordHasher']
     tags:
       - { name: doctrine.event_listener, event: prePersist }
       
-  app.event_listener.sign_in_user:
+  AppBundle\EventListener\UpdateUserListener:
+    class: 'AppBundle\EventListener\UpdateUserListener'
+    arguments: ['@AppBundle\Service\UserPasswordHasher']
+    tags:
+      - { name: doctrine.event_listener, event: preUpdate }
+      
+  AppBundle\EventListener\SignInUserListener:
     class: 'AppBundle\EventListener\SignInUserListener'
     arguments: ['@doctrine.orm.default_entity_manager']
     tags:

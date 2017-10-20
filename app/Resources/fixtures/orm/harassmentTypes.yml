@@ -1,0 +1,25 @@
+AppBundle\Entity\HarassmentType:
+    harassment_type_1:
+        label: "Immigration Status"
+    harassment_type_2:
+        label: "Age"
+    harassment_type_3:
+        label: "Gender"
+    harassment_type_4:        
+        label: "Race"
+    harassment_type_5:
+        label: "Religious Beliefs"
+    harassment_type_6:
+        label: "Sexual Orientation"
+    harassment_type_7:
+        label: "Marital Status"
+    harassment_type_8:
+        label: "Political Beliefs"
+    harassment_type_9:
+        label: "Veteran Status"
+    harassment_type_10:
+        label: "Mental Disabilities"
+    harassment_type_11:
+        label: "Physical Disabilities"
+    harassment_type_12:
+        label: "Gender Identification"

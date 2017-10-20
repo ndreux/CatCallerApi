@@ -1,5 +1,5 @@
 services:
 
-  app.service.user_password_hasher:
+  AppBundle\Service\UserPasswordHasher:
     class: 'AppBundle\Service\UserPasswordHasher'
     arguments: ['@security.encoder_factory', '@event_dispatcher']
