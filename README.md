@@ -23,10 +23,12 @@ To do so :
 
 Send a `POST` request with the following JSON body :
 
+```
 {
   "email": "youremail@mail.com",
   "plainPassword": "password"
 }
+```
 
 Ex : https://paw.pt/cJAWOIGv
 
