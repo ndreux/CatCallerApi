@@ -2,10 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use DateTime;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -16,7 +13,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ApiResource(attributes={
  *     "normalization_context"={"groups"={"report_output"}},
- *     "denormalization_context"={"groups"={"report_input"}}
+ *     "denormalization_context"={"groups"={"report_input"}},
+ *     "access_control"="is_granted('ROLE_USER')"
  * })
  */
 class Report
