@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\HasLifecycleCallbacks()
  *
  * @ApiResource(attributes={
- *     "filters"={"app.filters.report.location"},
+ *     "filters"={"app.filters.report.harassment_location", "app.filters.report.harassment_type"},
  *     "normalization_context"={"groups"={"report_output"}},
  *     "denormalization_context"={"groups"={"report_input"}}
  * })
