@@ -1,0 +1,7 @@
+services:
+
+  app.filters.report.location:
+    parent: 'api_platform.doctrine.orm.range_filter'
+    arguments:
+      - { harassment.location.latitude: ~ , harassment.location.longitude: ~ }
+    tags:  [ 'api_platform.filter' ]
