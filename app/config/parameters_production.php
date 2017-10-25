@@ -19,6 +19,7 @@ $container->setParameter('locale', 'en');
 $container->setParameter('mailer_transport', "gmail");
 $container->setParameter('mailer_host', null);
 $container->setParameter('mailer_user', "nclsdrx@gmail.com");
+$container->setParameter('mailer_password', "lkuzgrcnuqknrczg");
 $container->setParameter('secret', 'ThisTokenIsNotSoSecretChangeIt');
 $container->setParameter('cors_allow_origin', 'http://localhost');
 $container->setParameter('varnish_urls', null);
