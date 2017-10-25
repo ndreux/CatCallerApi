@@ -20,6 +20,7 @@
     },
     "require": {
         "php": ">=7.0",
+        "ext-apcu": "*",
         "api-platform/core": "^2.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
