@@ -3,3 +3,4 @@ imports:
     - { resource: event_listeners.yml }
     - { resource: repositories.yml }
     - { resource: services.yml }
+    - { resource: filters.yml }
