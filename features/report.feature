@@ -60,7 +60,7 @@ Feature: Manage reports
     And the JSON node "@id" should be equal to "/reports"
     And the JSON node "@type" should be equal to "hydra:Collection"
     And the JSON node "hydra:member" should have "30" element
-    And the JSON node "hydra:totalItems" should be equal to "30"
+    And the JSON node "hydra:totalItems" should be equal to "50"
 
   Scenario: An authenticated user should able to retrieve the report of a specific report
     Given I am authenticated as "user@test.com"
