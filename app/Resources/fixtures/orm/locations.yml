@@ -1,5 +1,0 @@
-AppBundle\Entity\Location:
-    
-    location_{1..50}:
-        latitude: <latitude()>
-        longitude: <longitude()>

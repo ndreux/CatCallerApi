@@ -1,6 +1,6 @@
 AppBundle\Entity\Report:
 
-    report_{1..5}:
-        reporter: "@user_<numberBetween(1, 5)>"
+    report_{1..50}:
+        reporter: "@user_*"
         harassment: "@harassment_<current()>"
         type: "<numberBetween(1, 2)>"
