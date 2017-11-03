@@ -90,6 +90,10 @@ api_platform:
         vary: ['Content-Type', 'Authorization']
         public: true
     enable_fos_user: true
+    collection:
+        pagination:
+            client_items_per_page: true # Disabled by default
+            items_per_page_parameter_name: itemsPerPage # Default value
         
 lexik_jwt_authentication:
     private_key_path: '%jwt_private_key_path%'
