@@ -250,9 +250,9 @@ class Harassment
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNote(): string
+    public function getNote()
     {
         return $this->note;
     }

@@ -48,7 +48,7 @@ Feature: Manage reports
     }
     """
 
-  Scenario: An authenticated user should able to retrieve the report list (5 results)
+  Scenario: An authenticated user should able to retrieve the report list (30 results - page 1)
     Given I am authenticated as "user@test.com"
     When I add "Content-Type" header equal to "application/ld+json"
     And I add "Accept" header equal to "application/ld+json"
@@ -59,8 +59,8 @@ Feature: Manage reports
     And the JSON node "@context" should be equal to "/contexts/Report"
     And the JSON node "@id" should be equal to "/reports"
     And the JSON node "@type" should be equal to "hydra:Collection"
-    And the JSON node "hydra:member" should have "5" element
-    And the JSON node "hydra:totalItems" should be equal to "5"
+    And the JSON node "hydra:member" should have "30" element
+    And the JSON node "hydra:totalItems" should be equal to "50"
 
   Scenario: An authenticated user should able to retrieve the report of a specific report
     Given I am authenticated as "user@test.com"
@@ -120,17 +120,17 @@ Feature: Manage reports
     Then the response status code should be 201
     And the response should be in JSON
     And the JSON node "@context" should be equal to "/contexts/Report"
-    And the JSON node "@id" should be equal to "/reports/6"
+    And the JSON node "@id" should be equal to "/reports/51"
     And the JSON node "@type" should be equal to "Report"
-    And the JSON node "id" should be equal to "6"
+    And the JSON node "id" should be equal to "51"
     And the JSON node "reporter" should be equal to "/users/1"
     And the JSON node "type" should be equal to 2
     And the JSON node "createdAt" should not be null
     And the JSON node "updatedAt" should not be null
     And the JSON node "harassment" should not be null
-    And the JSON node "harassment.@id" should be equal to "/harassments/6"
+    And the JSON node "harassment.@id" should be equal to "/harassments/51"
     And the JSON node "harassment.@type" should be equal to "Harassment"
-    And the JSON node "harassment.id" should be equal to 6
+    And the JSON node "harassment.id" should be equal to 51
     And the JSON node "harassment.datetime" should be equal to "2001-09-24T09:27:44+00:00"
     And the JSON node "harassment.location" should not be null
     And the JSON node "harassment.location.@id" should be equal to "/locations/51"
