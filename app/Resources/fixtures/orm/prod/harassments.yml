@@ -1,6 +1,6 @@
 AppBundle\Entity\Harassment:
 
-    harassment_{1..500}:
+    harassment_{1..1000}:
         datetime: "<dateTime()>"
         location: "@location_<current()>"
         types: ["@harassment_type_*"]

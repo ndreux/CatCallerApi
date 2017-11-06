@@ -1,5 +1,11 @@
 AppBundle\Entity\Location:
-    
+
+    # Paris
     location_{1..500}:
         latitude: <latitude(48.822684, 48.896224)>
         longitude: <longitude(2.285663, 2.399592)>
+
+    # Guayaquil
+    location_{501..1000}:
+        latitude: <latitude(-79.939148,  -79.871264)>
+        longitude: <longitude(-2.276868, -2.098198)>
