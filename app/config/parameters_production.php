@@ -26,4 +26,4 @@ $container->setParameter('varnish_urls', null);
 $container->setParameter('jwt_private_key_path', '%kernel.root_dir%/../var/jwt/private_prod.pem');
 $container->setParameter('jwt_public_key_path', '%kernel.root_dir%/../var/jwt/public_prod.pem');
 $container->setParameter('jwt_key_pass_phrase', getenv('JWT_KEYS_PASS'));
-$container->setParameter('jwt_token_ttl', 3600);
+$container->setParameter('jwt_token_ttl', 31536000);
