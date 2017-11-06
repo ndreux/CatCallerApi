@@ -7,5 +7,6 @@ AppBundle\Entity\Location:
 
     # Guayaquil
     location_{501..1000}:
-        latitude: <latitude(-79.939148,  -79.871264)>
-        longitude: <longitude(-2.276868, -2.098198)>
+        latitude: <latitude(-2.276868,  -2.098198)>
+        longitude: <longitude(-79.939148, -79.871264)>
+Ø
