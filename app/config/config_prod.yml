@@ -1,5 +1,4 @@
 imports:
-    - { resource: parameters_production.php }
     - { resource: config.yml }
 
 doctrine:
@@ -16,7 +15,7 @@ monolog:
             handler: nested
         nested:
             type: stream
-            path: 'php://stderr'
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
         console:
             type: console
