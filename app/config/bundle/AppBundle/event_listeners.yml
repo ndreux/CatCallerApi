@@ -18,3 +18,9 @@ services:
     arguments: ['@doctrine.orm.default_entity_manager']
     tags:
         - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+
+  AppBundle\EventListener\AuthenticateUserListener:
+    class: AppBundle\EventListener\AuthenticateUserListener
+    arguments: [ '@security.token_storage' ]
+    tags:
+        - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
