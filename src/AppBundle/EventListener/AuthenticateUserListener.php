@@ -9,12 +9,12 @@
 namespace AppBundle\EventListener;
 
 
+use AppBundle\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class AuthenticateUserListener
 {
-
     /**
      * @var TokenStorage
      */
@@ -35,8 +35,11 @@ class AuthenticateUserListener
      */
     public function onJWTCreated(JWTCreatedEvent $event)
     {
+        /** @var User $user */
+        $user = $event->getUser();
+
         $payload        = $event->getData();
-        $payload['uid'] = $this->tokenStorage->getToken()->getUser()->getId();
+        $payload['uid'] = $user->getId();
 
         $event->setData($payload);
     }
