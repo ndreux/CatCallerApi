@@ -1,13 +1,13 @@
 services:
 
-  app.filters.report.harassment_location:
+  app.filters.range.report:
     parent: 'api_platform.doctrine.orm.range_filter'
     arguments:
       - { harassment.location.latitude: ~ , harassment.location.longitude: ~ }
     tags:  [ 'api_platform.filter' ]
 
-  app.filters.report.harassment_type:
+  app.filters.search.report:
     parent: 'api_platform.doctrine.orm.search_filter'
     arguments:
-      - { harassment.types.id: exact }
+      - { harassment.types.id: exact, reporter.id: exact }
     tags:  [ 'api_platform.filter' ]
